@@ -643,7 +643,7 @@ public class Test {
 39.   Describe the different approaches of String processing.
 
   String is a sequence of characters, for e.g. “Hello” is a string of 5 characters. In java, string is an immutable object which means it is constant and can cannot be changed once it has been created. 
-	String uses various approaches using StringBuffer and StringBuilder classes.
-	The java.lang.String class provides a lot of methods to work on string. By the help of these methods, we can perform operations on string such as trimming, concatenating, converting, comparing, replacing strings etc.
+  String uses various approaches using StringBuffer and StringBuilder classes.
+  The java.lang.String class provides a lot of methods to work on string. By the help of these methods, we can perform operations on string such as trimming, concatenating, converting, comparing, replacing strings etc.
 
 
