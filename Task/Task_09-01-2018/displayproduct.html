@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Product Details</title>
+
+<script type="text/javascript">
+	function getData(){
+		var locate = window.location;
+		document.joe.burns.value = locate;
+		var text = document.joe.burns.value;
+				
+		var id=getProductId(text);
+		var name=getProductName(text,theleft);
+		var price=getProductPrice(text,theleft);
+		var quantity=getProductQuantity(text);
+		
+		document.getElementById("prodid").innerHTML=id;
+		document.getElementById("prodname").innerHTML=name;
+		document.getElementById("prodprice").innerHTML=price;
+		document.getElementById("prodquantity").innerHTML=quantity;
+		
+	}
+	function getProductId(str)
+	{
+		alert
+		theleft = str.indexOf("=") + 1;
+		theright = str.indexOf("&&");
+	return(str.substring(theleft, theright));
+	}
+	function getProductName(str,startIndex){
+		alert
+		theleft = str.indexOf("=",startIndex) + 1;  
+		theright = str.indexOf("&&",theleft);
+		return(str.substring(theleft, theright));
+	}
+	function getProductPrice(str,startIndex){
+		alert
+		theleft = str.indexOf("=",startIndex) + 1;  
+		theright = str.indexOf("&&",theleft);
+		return(str.substring(theleft, theright));
+	}
+	function getProductQuantity(str){
+		alert
+		theleft = str.lastIndexOf("=")+1 ;  
+		return(str.substring(theleft,str.length));
+	}
+	
+</script>
+</head>
+<body onload = getdata()>
+
+<h1> Product details</h1>
+
+<table>
+	<tr>
+		<td>Product Id </td>
+		<td><div id="prodid"></div></td>
+	</tr>
+	<tr>
+		<td>Product Name </td>
+		<td><div id="prodname"></div></td>
+	</tr>
+	<tr>
+		<td>Product Price </td>
+		<td><div id="prodprice"></div></td>
+	</tr>
+	<tr>
+		<td>Product Quantity </td>
+		<td><div id="prodquantity"></div></td>
+	</tr>
+	
+</table>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Product</title>
+</head>
+<body>
+
+<h2 align = "center"> Product Details</h2>
+
+<form name = "productForm">
+	<table>
+		<tr> 
+		<td>ProductId</td>
+		<td><input type = "text" name = "prodid"></td>
+		</tr>
+		<tr> 
+		<td>ProductName</td>
+		<td><input type = "text"  name = "prodname"></td>
+		</tr>
+		<tr> 
+		<td>ProductPrice</td>
+		<td><input type = "text" name = "prodprice"></td>
+		</tr>
+		<tr> 
+		<td>ProductQuantity</td>
+		<td><input type = "text" name = "quantity"></td>
+		</tr>
+	
+	</table>
+	<br><br>
+	<input type = "submit" value = "Submit" onclick = "validInfo()"/>
+
+</form>
+
+
+<script type = "text/javascript">
+	function validInfo()
+	{
+		var id = document.forms["productForm"]["prodid"].value;
+		var name = document.forms["productForm"]["prodname"].value;
+		var price = document.forms["productForm"]["prodprice"].value;
+		var qty = document.forms["productForm"]["quantity"].value);
+		
+		if(id == null || id=="" || name == null || name=="" || price==null||price==""||qty==null||qty=="")
+			{
+			alert("Enter all fields");
+			}
+		else
+			{
+			window.location.href="displayproduct.html?pid="+id+"&&name="+name+"&&price="+price+"&&quantity="+qty;";
+			}
+	}
+
+</script>
+
+</body>
+</html>
