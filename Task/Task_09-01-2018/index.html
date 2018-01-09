@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+</head>
+<body>
+<h1 align = "center"> Welcome To Product Zone</h1>
+
+<p> Give your username and password </p>
+
+<form name = "MyForm" onsubmit = "valid()">
+	Username  <input type = "text" name = "username"> <br><br> <br>
+	Password  <input type = "password" name = "password"> <br> <br> <br>
+	
+	<input type = "submit" value = "Login">
+</form>
+
+<script type="text/javascript">
+	function valid()
+	{
+		var name = document.forms["MyForm"]["username"].value;
+		var pwd = document.forms["MyForm"]["password"].value;
+		if(name == null || name == "" || pwd == null || pwd == "")
+			{
+			alert("InCorrect Username and Password");
+			}
+		else
+			{
+			alert("Login success");
+			window.open("product.html");
+			//location.href("product.html");
+			}
+	}
+</script>
+
+</body>
+</html>
