@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+</head>
+<body>
+<h2> Customer details</h2>
+<p> Enter your details below </p>
+<form name = "productForm">
+<table>
+	<tr>
+	<td>Transaction Id</td>
+	<td><input type = "text" name = "transid"></td>
+	</tr>
+	<tr>
+	<td>Product Name</td>
+	<td><input type = "text" name = "prodname"></td>
+	</tr>
+	<tr>
+	<td>Product Price</td>
+	<td><input type = "text" name = "price"></td>
+	</tr>
+	<tr>
+	<td>Product Quantity</td>
+	<td><input type = "text" name = "quantity"></td>
+	</tr>
+	<tr>
+	<td>Customer Name</td>
+	<td><input type = "text" name = "cusname"></td>
+	</tr>
+	<tr>
+	<td>Gender</td>
+	<td><input type="radio" name="gender" value="male" checked> Male  <input type="radio" name="gender" value="female"> Female</td>
+	</tr>
+	<tr>
+	<td>Customer DOB</td>
+	<td><input type = "text" name = "dob"></td>
+	</tr>
+	<tr>
+	<td>Customer City</td>
+	<td><input type = "text" name = "city"></td>
+	</tr>
+	<tr>
+	<td>Customer state</td>
+	<td><input type = "text" name = "state"></td>
+	</tr>
+	<tr>
+	<td>Customer country</td>
+	<td><input type = "text" name = "country"></td>
+	</tr>
+
+</table>
+
+<input type = "submit" value = "Submit" onclick = "functionProduct()"/>
+
+</form>
+<script type="text/javascript">
+	function functionProduct()
+	{
+		var prodname = document.forms["productForm"]["prodname"].value;
+		var price = document.forms["productForm"]["prodprice"].value;
+		var qty = document.forms["productForm"]["quantity"].value);
+		var cusname = document.forms["productForm"]["cusname"].value);
+		var country = document.forms["productForm"]["country"].value);
+		
+		var totalPrice = price*qty;
+		var discountAmount;
+		
+		if(totalPrice > 10000)
+			{
+			if(country == "india")
+				{
+				discountAmount = totalPrice - (totalPrice*0.1);
+				}
+			else if(country == "usa")
+				{
+				discountAmount = totalPrice - (totalPrice*0.05);
+				}
+			}
+		var w=window.open("","_self")
+		w.document.writeln("<html><head><title>Product Display Page</title></head><body>");
+		w.document.writeln("Customer name: " + cname + "<br>");
+		w.document.writeln("Product name: " + pname + "<br>");
+		w.document.writeln("Total amount before discount: " + total+"<br>");
+		w.document.writeln("Total amount after discount: " + distotal + "<br>");
+		w.document.writeln("</body></html>");
+	}
+
+	function process()
+	{
+		alert("Valid entry");
+	}
+</script>
+</body>
+</html>
