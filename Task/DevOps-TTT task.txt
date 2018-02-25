@@ -1,0 +1,462 @@
+Spring
+======
+
+1.	What is Spring Framework?
+		Spring is one of the most popular frameworks for Java enterprise edition. Spring framework core concepts are “Dependency Injection” and “Aspect Oriented Programming”. It can be used in normal java applications also to achieve loose coupling between different components by implementing dependency injection and we can perform cross cutting tasks such as logging and authentication using spring support for aspect oriented programming.
+		
+2.	What are some of the important features and advantages of Spring Framework?
+	Features:
+		1. Lightweight and very little overhead of using framework for our development.
+		2. Dependency Injection or Inversion of Control to write components that are independent of each other, spring container takes care of wiring them together to achieve our work.
+		3. Spring IoC container manages Spring Bean life cycle and project specific configurations such as JNDI lookup.
+	Advantages:
+		1. Reducing direct dependencies between different components of the application, usually Spring IoC container is responsible for initializing resources or beans and inject them as dependencies.
+		2. Writing unit test cases are easy in Spring framework because our business logic doesn’t have direct dependencies with actual resource implementation classes. We can easily write a test configuration and inject our mock beans for testing purposes.
+		
+3.	What do you understand by Dependency Injection?
+		Dependency Injection is a composition of structural design patterns, in which for each function of the application there is one, a conditionally independent object (service) that can have the need to use other objects (dependencies) known to it by interfaces. Dependencies are transferred (implemented) to the service at the time of its creation. This is a situation where we introduce an element of one class into another. In practice, DI is implemented by passing parameters to the constructor or using setters. Libraries that implement this approach are also called IoC containers.
+		
+4.	How do we implement DI in Spring Framework?
+		XML based or Annotations based configuration are used to implement DI in Spring Framework.
+		
+5.	What are the benefits of using Spring Tool Suite?
+		Able to install plugins into eclipse to get all features of spring tool suite. However STS comes with Eclipse with some other important stuffs such as Maven support, Templates for creating different types of Spring projects and tc server for better performance with Spring applications.
+		
+6.	Name some of the important Spring Modules?
+		Spring context, Aspect oriented proggramming, DAO, JDBC, ORM, web module and MVC.
+		
+7.	What do you understand by Aspect Oriented Programming?
+		Enterprise applications have some common cross-cutting concerns that is applicable for different types of Objects and application modules, such as logging, transaction management, data validation, authentication etc. In Object Oriented Programming, modularity of application is achieved by Classes whereas in AOP application modularity is achieved by Aspects and they are configured to cut across different classes methods.
+		
+8.	What is Aspect, Advice, Pointcut, JointPoint and Advice Arguments in AOP?
+	Aspect: It is a class that implements cross cutting concerns like transaction management.
+	Advice: It is a action taken for particulat join point.
+	Pointcut: These are the regular expressions that is matched with join points to determine whether the advice needs to be execute or not.
+	Join point: A specific point in the application such as method execution, exception handling, changing object variable, etc.
+	Advice arguments: We can pass arguments in the advice methods.
+
+9.	What is the difference between Spring AOP and AspectJ AOP?
+		1. Spring AOP is simpler to use than AspectJ because we don’t need to worry about the weaving process.
+		2. Spring AOP supports AspectJ annotations, so if you are familiar with AspectJ then working with Spring AOP is easier.
+		3. Spring AOP supports only proxy-based AOP, so it can be applied only to method execution join points. AspectJ support all kinds of pointcuts.
+		4. One of the shortcoming of Spring AOP is that it can be applied only to the beans created through Spring Context.
+
+10.	What is Spring IoC Container?
+		Spring Inversion of control is the mechanism to achieve loosely-coupling between object dependencies. To achieve loose coupling and dynamic binding of the objects at runtime, the objects define their dependencies that are being injected by other assembler objects. 
+		
+11.	What is a Spring Bean?
+		Any normal class that is initialized by the spring ioc container is called as spring bean. Spring IoC container manages the life cycle of Spring Bean, bean scopes and injecting any required dependencies in the bean.
+		
+12.	What is the importance of Spring bean configuration file?
+		We use Spring Bean configuration file to define all the beans that will be initialized by Spring Context. When we create the instance of Spring ApplicationContext, it reads the spring bean xml file and initialize all of them. Once the context is initialized, we can use it to get different bean instances.
+		
+13.	What are different ways to configure a class as Spring Bean?
+		1. XML based configuration
+		2. Java basd configuration
+		3. Annotations based configuration
+		
+14.	What are different scopes of Spring Bean?
+		The different scopes of spring bean are singleton, prototype, request, session and global session.
+		
+15.	What is Spring Bean life cycle?
+		Spring Beans are initialized by Spring Container and all the dependencies are also injected. When context is destroyed, it also destroys all the initialized beans. This works well in most of the cases but sometimes we want to initialize other resources or do some validation before making our beans ready to use. Spring framework provides support for post-initialization and pre-destroy methods in spring beans.
+		
+16.	How to get ServletContext and ServletConfig object in a Spring Bean?
+		There are two ways to get Container specific objects in the spring bean.
+			1. Implementing Spring *Aware interfaces, for these ServletContextAware and ServletConfigAware interfaces, for complete example of these aware interfaces, please read Spring Aware Interfaces
+			2. Using @Autowired annotation with bean variable of type ServletContext and ServletConfig. They will work only in servlet container specific environment only though.
+		
+17.	What is Bean wiring and @Autowired annotation?
+		The process of injection spring bean dependencies while initializing it called Spring Bean Wiring.
+		Usually it’s best practice to do the explicit wiring of all the bean dependencies, but spring framework also supports autowiring. We can use @Autowired annotation with fields or methods for autowiring byType. For this annotation to work, we also need to enable annotation based configuration in spring bean configuration file. This can be done by context:annotation-config element.
+		
+18.	What are different types of Spring Bean autowiring?
+		There are four types of autowiring. We can autowire by name, type, constructor or @Autowired annotations.
+		
+19.	Does Spring Bean provide thread safety?
+		The default scope of Spring bean is singleton, so there will be only one instance per context. That means that all the having a class level variable that any thread can update will lead to inconsistent data. Hence in default mode spring beans are not thread-safe.
+		
+20.	What is a Controller in Spring MVC?
+		 Controller is the class that takes care of all the client requests and send them to the configured resources to handle it. A Controller class is responsible to handle different kind of client requests based on the request mappings. We can create a controller class by using @Controller annotation. Usually it’s used with @RequestMapping annotation to define handler methods for specific URI mapping.
+		 
+21.	What’s the difference between @Component, @Repository & @Service annotations in Spring?
+		1. @Component is used to indicate that a class is a component. These classes are used for auto detection and configured as bean, when annotation based configurations are used.
+		2. @Controller is a specific type of component, used in MVC applications and mostly used with RequestMapping annotation.
+		3. @Repository annotation is used to indicate that a component is used as repository and a mechanism to store/retrieve/search data. We can apply this annotation with DAO pattern implementation classes.
+		4. @Service is used to indicate that a class is a Service. Usually the business facade classes that provide some services are annotated with this.
+		
+22.	What is DispatcherServlet and ContextLoaderListener?
+		DispatcherServlet is the front controller in the Spring MVC application and it loads the spring bean configuration file and initialize all the beans that are configured. 
+		
+		ContextLoaderListener is the listener to start up and shut down Spring’s root WebApplicationContext. It’s important functions are to tie up the lifecycle of ApplicationContext to the lifecycle of the ServletContext and to automate the creation of ApplicationContext.
+		
+23.	What is ViewResolver in Spring?
+		ViewResolver implementations are used to resolve the view pages by name. Usually we configure it in the spring bean configuration file. InternalResourceViewResolver is one of the implementation of ViewResolver interface and we are providing the view pages directory and suffix location through the bean properties. 
+		
+24.	What is a MultipartResolver and when its used?
+		MultipartResolver interface is used for uploading files – CommonsMultipartResolver and StandardServletMultipartResolver are two implementations provided by spring framework for file uploading. By default there are no multipart resolvers configured but to use them for uploading files, all we need to define a bean named “multipartResolver” with type as MultipartResolver in spring bean configurations.
+		
+25.	How to handle exceptions in Spring MVC Framework?
+		1. Controller Based 
+		2. Global Exception Handler
+		3. HandlerExceptionResolver implementation
+
+26.	How to create ApplicationContext in a Java Program?
+		There are following ways to create spring context in a standalone java program.
+		1. AnnotationConfigApplicationContext: If we are using Spring in standalone java applications and using annotations for Configuration, then we can use this to initialize the container and get the bean objects.
+		2. ClassPathXmlApplicationContext: If we have spring bean configuration xml file in standalone application, then we can use this class to load the file and get the container object.
+		3. FileSystemXmlApplicationContext: This is similar to ClassPathXmlApplicationContext except that the xml configuration file can be loaded from anywhere in the file system.
+
+27.	Can we have multiple Spring configuration files?
+		For Spring MVC applications, we can define multiple spring context configuration files through contextConfigLocation. This location string can consist of multiple locations separated by any number of commas and spaces.
+		
+28.	What is ContextLoaderListener?
+		ContextLoaderListener is the listener class used to load root context and define spring bean configurations that will be visible to all other contexts.
+
+29.	What are the minimum configurations needed to create Spring MVC application?
+		For creating a simple Spring MVC application, we would need to do following tasks.
+		1. Add spring-context and spring-webmvc dependencies in the project.
+		2. Configure DispatcherServlet in the web.xml file to handle requests through spring container.
+		3. Spring bean configuration file to define beans, if using annotations then it has to be configured here. Also we need to configure view resolver for view pages.
+		4. Controller class with request mappings defined to handle the client requests.
+		
+30.	How would you relate Spring MVC Framework to MVC architecture?
+		Spring MVC is built on top of Model-View-Controller architecture. DispatcherServlet is the Front Controller in the Spring MVC application that takes care of all the incoming requests and delegate it to different controller handler methods.
+		
+31.	How to achieve localization in Spring MVC applications?
+		1. Creating message resource bundles for different locales, such as messages_en.properties, messages_fr.properties etc.
+		2. Defining messageSource bean in the spring bean configuration file of type ResourceBundleMessageSource or ReloadableResourceBundleMessageSource.
+		3. For change of locale support, define localeResolver bean of type CookieLocaleResolver and configure LocaleChangeInterceptor interceptor. 
+		
+32.	How can we use Spring to create Restful Web Service returning JSON response?
+		We can use Spring Framework to create Restful web services that returns JSON data. Spring provides integration with Jackson JSON API that we can use to send JSON response in restful web service.
+		
+33.	What are some of the important Spring annotations you have used?
+		1. @Controller 
+		2. @RequestMapping
+		3. @PathVariable
+		4. @Autowired
+		5. @Configuration
+		6. @ComponentScan
+		7. @Bean
+		
+34.	Can we send an Object as the response of Controller handler method?
+		Yes we can, using @ResponseBody annotation. This is how we send JSON or XML based response in restful web services.
+		
+35.	How to upload file in Spring MVC Application?
+		Spring provides built-in support for uploading files through MultipartResolver interface implementations. It’s very easy to use and requires only configuration changes to get it working. Obviously we would need to write controller handler method to handle the incoming file and process it. 
+		
+36.	How to validate form data in Spring Web MVC Framework?
+		Spring supports JSR-303 annotation based validations as well as provide Validator interface that we can implement to create our own custom validator. For using JSR-303 based validation, we need to annotate bean variables with the required validations.
+		
+37.	What is Spring MVC Interceptor and how to use it?
+		Spring MVC Interceptors are like Servlet Filters and allow us to intercept client request and process it. We can intercept client request at three places – preHandle, postHandle and afterCompletion.
+		We can create spring interceptor by implementing HandlerInterceptor interface or by extending abstract class HandlerInterceptorAdapter.
+		
+38.	What is Spring JdbcTemplate class and how to use it?
+		Spring Framework provides excellent integration with JDBC API and provides JdbcTemplate utility class that we can use to avoid bolier-plate code from our database operations logic such as Opening/Closing Connection, ResultSet, PreparedStatement etc.
+		
+39.	How to use Tomcat JNDI DataSource in Spring Web Application?
+		For using servlet container configured JNDI DataSource, we need to configure it in the spring bean configuration file and then inject it to spring beans as dependencies. Then we can use it with JdbcTemplate to perform database operations.
+	
+40.	How would you achieve Transaction Management in Spring?
+		Spring framework provides transaction management support through Declarative Transaction Management as well as programmatic transaction management. Declarative transaction management is most widely used because it’s easy to use and works in most of the cases.
+		We use annotate a method with @Transactional annotation for Declarative transaction management. We need to configure transaction manager for the DataSource in the spring bean configuration file.
+		
+41.	What is Spring DAO?
+		Spring DAO support is provided to work with data access technologies like JDBC, Hibernate in a consistent and easy way. For example we have JdbcDaoSupport, HibernateDaoSupport, JdoDaoSupport and JpaDaoSupport for respective technologies.
+		
+42.	How to integrate Spring and Hibernate Frameworks?
+		We can use Spring ORM module to integrate Spring and Hibernate frameworks, if you are using Hibernate 3+ where SessionFactory provides current session, then you should avoid using HibernateTemplate or HibernateDaoSupport classes and better to use DAO pattern with dependency injection for the integration.
+		
+43.	What is Spring Security?
+		Spring security framework focuses on providing both authentication and authorization in java applications. It also takes care of most of the common security vulnerabilities such as CSRF attack.
+
+44.	How to inject a java.util.Properties into a Spring Bean?
+		We need to define propertyConfigurer bean that will load the properties from the given property file. Then we can use Spring EL support to inject properties into other bean dependencies.
+		
+45.	Name some of the design patterns used in Spring Framework?
+		Singleton, factory, prototype, adapter, proxy, front controller, dao, dependency injection and aspect oriented programming.
+		
+46.	What are some of the best practices for Spring Framework?
+		1. Avoid version numbers in schema reference, to make sure we have the latest configs.
+		2 Divide spring bean configurations based on their concerns such as spring-jdbc.xml, spring-security.xml.
+		3. For spring beans that are used in multiple contexts in Spring MVC, create them in the root context and initialize with listener.
+		4. Configure bean dependencies as much as possible, try to avoid autowiring as much as possible.
+		5. For application level properties, best approach is to create a property file and read it in the spring bean configuration file.
+
+Hibernate
+=========
+
+1.	What is Hibernate Framework?
+		Object-relational mapping or ORM is the programming technique to map application domain model objects to the relational database tables. Hibernate is java based ORM tool that provides framework for mapping application domain objects to the relational database tables and vice versa.
+		Hibernate provides reference implementation of Java Persistence API, that makes it a great choice as ORM tool with benefits of loose coupling. We can use Hibernate persistence API for CRUD operations. Hibernate framework provide option to map plain old java objects to traditional database tables with the use of JPA annotations as well as XML based configuration.
+		
+2.	What is Java Persistence API (JPA)?
+		Java Persistence API (JPA) provides specification for managing the relational data in applications. JPA specifications is defined with annotations in javax.persistence package. Using JPA annotation helps us in writing implementation independent code.
+
+3.	What are the important benefits of using Hibernate Framework?
+		Hibernate eliminates all the boiler-plate code that comes with JDBC and takes care of managing resources, so we can focus on business logic.
+		Hibernate framework provides support for XML as well as JPA annotations, that makes our code implementation independent.
+		Hibernate provides a powerful query language (HQL) that is similar to SQL. However, HQL is fully object-oriented and understands concepts like inheritance, polymorphism and association.
+
+4.	What are the advantages of Hibernate over JDBC?
+		Hibernate removes a lot of boiler-plate code that comes with JDBC API, the code looks more cleaner and readable.
+		Hibernate supports inheritance, associations and collections. These features are not present with JDBC API.
+		Hibernate implicitly provides transaction management, in fact most of the queries can’t be executed outside transaction. In JDBC API, we need to write code for transaction management using commit and rollback. Read more at JDBC Transaction Management.
+
+5.	Name some important interfaces of Hibernate framework?
+		1. SessionFactory (org.hibernate.SessionFactory)
+		2. Session (org.hibernate.Session)
+		3. Transaction (org.hibernate.Transaction)
+		
+6.	What is hibernate configuration file?
+		Hibernate configuration file contains database specific configurations and used to initialize SessionFactory. We provide database credentials or JNDI resource information in the hibernate configuration xml file. Some other important parts of hibernate configuration file is Dialect information, so that hibernate knows the database type and mapping file or class details.
+		
+7.	What is hibernate mapping file?
+		Hibernate mapping file is used to define the entity bean fields and database table column mappings. We know that JPA annotations can be used for mapping but sometimes XML mapping file comes handy when we are using third party classes and we can’t use annotations.
+		
+8.	Name some important annotations used for Hibernate mapping?
+		Entity, Id, Column, GeneratedValue, OneToOne, OneToMany, ManyToOne.
+		
+9.	What is Hibernate SessionFactory and how to configure it?
+		SessionFactory is the factory class used to get the Session objects. SessionFactory is responsible to read the hibernate configuration parameters and connect to the database and provide Session objects. Usually an application has a single SessionFactory instance and threads servicing client requests obtain Session instances from this factory.
+		
+10.	Hibernate SessionFactory is thread safe?
+		Internal state of SessionFactory is immutable, so it’s thread safe. Multiple threads can access it simultaneously to get Session instances.
+		
+11.	What is Hibernate Session and how to get it?
+		Hibernate Session is the interface between java application layer and hibernate. This is the core interface used to perform database operations. Lifecycle of a session is bound by the beginning and end of a transaction.
+		
+12.	Hibernate Session is thread safe?
+		Hibernate Session object is not thread safe, every thread should get it’s own session instance and close it after it’s work is finished.
+		
+13.	What is difference between openSession and getCurrentSession?
+		Hibernate SessionFactory getCurrentSession() method returns the session bound to the context. But for this to work, we need to configure it in hibernate configuration file. Since this session object belongs to the hibernate context, we don’t need to close it. Once the session factory is closed, this session object gets closed.
+		
+14.	What is difference between Hibernate Session get() and load() method?
+		Hibernate session comes with different methods to load data from database. get and load are most used methods, at first look they seems similar but there are some differences between them.
+
+		1. get() loads the data as soon as it’s called whereas load() returns a proxy object and loads data only when it’s actually required, so load() is better because it support lazy loading.
+		2. Since load() throws exception when data is not found, we should use it only when we know data exists.
+		3. We should use get() when we want to make sure data exists in the database.
+
+15.	What is hibernate caching? Explain Hibernate first level cache?
+		As the name suggests, hibernate caches query data to make our application faster. Hibernate Cache can be very useful in gaining fast application performance if used correctly. The idea behind cache is to reduce the number of database queries, hence reducing the throughput time of the application.
+		
+16.	How to configure Hibernate Second Level Cache using EHCache?
+		Add hibernate-ehcache dependency in your maven project, if it’s not maven then add corresponding jars.
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>4.3.5.Final</version>
+		</dependency>
+		
+17.	What are different states of an entity bean?
+		Transient, Persistent and Detached
+		
+18.	What is use of Hibernate Session merge() call?
+		Hibernate merge can be used to update existing values, however this method create a copy from the passed entity object and return it. The returned object is part of persistent context and tracked for any changes, passed object is not tracked.
+
+19.	What is difference between Hibernate save(), saveOrUpdate() and persist() methods?
+		Hibernate save can be used to save entity to database. Problem with save() is that it can be invoked without a transaction and if we have mapping entities, then only the primary object gets saved causing data inconsistencies. Also save returns the generated id immediately.
+		
+20.	What will happen if we don’t have no-args constructor in Entity bean?
+		Hibernate uses Reflection API to create instance of Entity beans, usually when you call get() or load() methods. The method Class.newInstance() is used for this and it requires no-args constructor. So if you won’t have no-args constructor in entity beans, hibernate will fail to instantiate it and you will get HibernateException.
+		
+21.	What is difference between sorted collection and ordered collection, which one is better?
+		When we use Collection API sorting algorithms to sort a collection, it’s called sorted list. For small collections, it’s not much of an overhead but for larger collections it can lead to slow performance and OutOfMemory errors. Also the entity beans should implement Comparable or Comparator interface for it to work, read more at java object list sorting.
+		
+22.	What are the collection types in Hibernate?
+		Bag, Set, List, Array, Map
+		
+23.	How to implement Joins in Hibernate?
+		Using associations such as one-to-one, one-to-many etc.
+		Using JOIN in the HQL query. There is another form “join fetch” to load associated data simultaneously, no lazy loading.
+		We can fire native sql query and use join keyword.
+
+24.	Why we should not make Entity Class final?
+		Hibernate use proxy classes for lazy loading of data, only when it’s needed. This is done by extending the entity bean, if the entity bean will be final then lazy loading will not be possible, hence low performance.
+		
+25.	What is HQL and what are it’s benefits?
+		Hibernate Framework comes with a powerful object-oriented query language – Hibernate Query Language (HQL). It’s very similar to SQL except that we use Objects instead of table names, that makes it more close to object oriented programming.
+		
+26.	What is Query Cache in Hibernate?
+		Hibernate implements a cache region for queries resultset that integrates closely with the hibernate second-level cache.
+
+		This is an optional feature and requires additional steps in code. This is only useful for queries that are run frequently with the same parameters. First of all we need to configure below property in hibernate configuration file.
+
+27.	Can we execute native sql query in hibernate?
+		Hibernate provide option to execute native SQL queries through the use of SQLQuery object.
+
+		For normal scenarios, it is however not the recommended approach because we loose benefits related to hibernate association and hibernate first level caching.
+
+28.	What is the benefit of native sql query support in hibernate?
+		Native SQL Query comes handy when we want to execute database specific queries that are not supported by Hibernate API such as query hints or the CONNECT keyword in Oracle Database.
+
+29.	What is Named SQL Query?
+		Hibernate provides Named Query that we can define at a central location and use them anywhere in the code. We can created named queries for both HQL and Native SQL.
+		
+30.	What are the benefits of Named SQL Query?
+		Hibernate Named Query helps us in grouping queries at a central location rather than letting them scattered all over the code.
+		Hibernate Named Query syntax is checked when the hibernate session factory is created, thus making the application fail fast in case of any error in the named queries.
+
+31.	What is the benefit of Hibernate Criteria API?
+		Hibernate provides Criteria API that is more object oriented for querying the database and getting results. We can’t use Criteria to run update or delete queries or any DDL statements. It’s only used to fetch the results from the database using more object oriented approach.
+		
+32.	How to log hibernate generated sql queries in log files?
+		<property name="hibernate.show_sql">true</property>
+		
+33.	What is Hibernate Proxy and how it helps in lazy loading?
+		Hibernate uses proxy object to support lazy loading. Basically when you load data from tables, hibernate doesn’t load all the mapped objects. As soon as you reference a child or lookup object via getter methods, if the linked entity is not in the session cache, then the proxy code will go to the database and load the linked object. It uses javassist to effectively and dynamically generate sub-classed implementations of your entity objects.
+
+34.	How to implement relationships in hibernate?
+		We can easily implement one-to-one, one-to-many and many-to-many relationships in hibernate. It can be done using JPA annotations as well as XML based configurations. For better understanding, you should go through following tutorials.
+
+			1. Hibernate One to One Mapping
+			2. Hibernate One to Many Mapping
+			3. Hibernate Many to Many Mapping
+			
+35.	How transaction management works in Hibernate?
+		Transaction management is very easy in hibernate because most of the operations are not permitted outside of a transaction. So after getting the session from SessionFactory, we can call session beginTransaction() to start the transaction. This method returns the Transaction reference that we can use later on to either commit or rollback the transaction.
+		
+36.	What is cascading and what are different types of cascading?
+		When we have relationship between entities, then we need to define how the different operations will affect the other entity. This is done by cascading and there are different types of it.
+			None, ALL, SAVE_UPDATE, DELETE, DETATCH, LOCK, REPLICATE
+			
+37.	How to integrate log4j logging in hibernate application?
+		Add log4j dependencies for maven project, if not maven then add corresponding jar files.
+		Create log4j.xml configuration file or log4j.properties file and keep it in the classpath. You can keep file name whatever you want because we will load it in next step.
+		For standalone projects, use static block to configure log4j using DOMConfigurator or PropertyConfigurator. For web applications, you can use ServletContextListener to configure it.
+
+38.	How to use application server JNDI DataSource with Hibernate framework?
+		For web applications, it’s always best to allow servlet container to manage the connection pool. That’s why we define JNDI resource for DataSource and we can use it in the web application. It’s very easy to use in Hibernate, all we need is to remove all the database specific properties and use below property to provide the JNDI DataSource name.
+				<property name="hibernate.connection.datasource">java:comp/env/jdbc/MyLocalDB</property>
+				
+39.	How to integrate Hibernate and Spring frameworks?
+		Spring is one of the most used Java EE Framework and Hibernate is the most popular ORM framework. That’s why Spring Hibernate combination is used a lot in enterprise applications. The best part with using Spring is that it provides out-of-box integration support for Hibernate with Spring ORM module. 
+		1. Add hibernate-entitymanager, hibernate-core and spring-orm dependencies.
+		2. Create Model classes and corresponding DAO implementations for database operations. Note that DAO classes will use SessionFactory that will be injected by Spring Bean configuration.
+		3. If you are using Hibernate 3, you need to configure org.springframework.orm.hibernate3.LocalSessionFactoryBean or org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean in Spring Bean configuration file. For Hibernate 4, there is single class org.springframework.orm.hibernate4.LocalSessionFactoryBean that should be configured.
+		4. Note that we don’t need to use Hibernate Transaction Management, we can leave it to Spring declarative transaction management using @Transactional annotation.
+
+40.	What is HibernateTemplate class?
+		When Spring and Hibernate integration started, Spring ORM provided two helper classes – HibernateDaoSupport and HibernateTemplate. The reason to use them was to get the Session from Hibernate and get the benefit of Spring transaction management. However from Hibernate 3.0.1, we can use SessionFactory getCurrentSession() method to get the current session and use it to get the spring transaction management benefits. If you go through above examples, you will see how easy it is and that’s why we should not use these classes anymore.
+
+41.	How to integrate Hibernate with Servlet or Struts2 web applications?
+		Hibernate integration with Servlet or Struts2 needs to be done using ServletContextListener.
+		
+42.	Which design patterns are used in Hibernate framework?
+		Domain Model Pattern – An object model of the domain that incorporates both behavior and data.
+		Data Mapper – A layer of Mappers that moves data between objects and a database while keeping them independent of each other and the mapper itself.
+		Proxy Pattern for lazy loading
+		Factory pattern in SessionFactory
+
+43.	What are best practices to follow with Hibernate framework?
+		Always check the primary key field access, if it’s generated at the database layer then you should not have a setter for this.
+		By default hibernate set the field values directly, without using setters. So if you want hibernate to use setters, then make sure proper access is defined as @Access(value=AccessType.PROPERTY).
+		If access type is property, make sure annotations are used with getter methods and not setter methods. Avoid mixing of using annotations on both filed and getter methods.
+		Use native sql query only when it can’t be done using HQL, such as using database specific feature.
+
+44.	What is Hibernate Validator Framework?
+		Data validation is integral part of any application. You will find data validation at presentation layer with the use of Javascript, then at the server side code before processing it. Also data validation occurs before persisting it, to make sure it follows the correct format.
+
+		Validation is a cross cutting task, so we should try to keep it apart from our business logic. That’s why JSR303 and JSR349 provides specification for validating a bean by using annotations.
+
+45.	What is the benefit of Hibernate Tools Eclipse plugin?
+		Hibernate Tools plugin helps us in writing hibernate configuration and mapping files easily. The major benefit is the content assist to help us with properties or xml tags to use. It also validates them against the Hibernate DTD files, so we know any mistakes before hand.
+		
+Maven
+=====
+
+1)	Explain what is Maven? How does it work?
+		Maven is a project management tool. It provides the developer a complete build lifecycle framework. On executing Maven commands, it will look for POM file in Maven; it will run the command on the resources described in the POM.
+		
+2)	List out what are the aspects does Maven Manages?
+		Maven handles following activities of a developer
+		 Build
+		 Documentation
+		 Reporting
+		 Dependencies
+		 SCMs
+		 Releases
+		 Distribution
+		 Mailing list
+		
+3)	Mention the three build lifecycle of Maven?
+		Clean: Cleans up artifacts that are created by prior builds
+		Default (build): Used to create the application
+		Site: For the project generates site documentation
+		
+4)	Explain what is POM?
+		In Maven, POM (Project Object Model) is the fundamental unit of work. It is an XML file which holds the information about the project and configuration details used to build a project by Maven.
+		
+5)	Explain what is Maven artifact?
+		Usually an artifact is a JAR file which gets arrayed to a Maven repository. One or more artifacts a maven build produces such as compiled JAR and a sources JAR.
+
+6)	 Explain what is Maven Repository? What are their types?
+		A Maven repository is a location where all the project jars, library jars, plugins or any other particular project related artifacts are stored and can be easily used by Maven.
+
+7)	Why Maven Plugins are used?
+		Maven plugins are used to
+		Create a jar file
+		Create war file
+		Compile code files
+		Unit testing of code
+		Documenting projects
+		Reporting
+		
+8)	List out the dependency scope in Maven?
+		Compile: It is the default scope, and it indicates what dependency is available in the classpath of the project
+		Provided: It indicates that the dependency is provided by JDK or web server or container at runtime
+		Runtime: This tells that the dependency is not needed for compilation but is required during execution
+		Test: It says dependency is available only for the test compilation and execution phases
+		System: It indicates you have to provide the system path
+		Import: This indicates that the identified or specified POM should be replaced with the dependencies in that POM’s section
+		
+9)	Mention how profiles are specified in Maven?
+		Profiles are specified in Maven by using a subset of the elements existing in the POM itself.
+
+10)	Explain how you can exclude dependency?
+		By using the exclusion element, dependency can be excluded
+		
+11)	Mention the difference between Apache Ant and Maven?
+		Ant is a toolbox – Maven is a framework
+		Ant does not have formal conventions like project directory structure – Maven has conventions
+		Ant is procedural; you have to tell to compile, copy and compress – Maven is declarative ( information on what to make & how to build)
+		Ant does not have lifecycle; you have to add sequence of tasks manually – Maven has a lifecycle
+		Ant scripts are not reusable – Maven plugins are reusable
+		
+12)	In Maven what are the two setting files called and what are their location?
+		Maven installation directory: $M2_Home/conf/settings.xml
+		User’s home directory: ${ user.home }/ .m2 / settings.xml
+		
+13)	List out what are the build phases in Maven?
+		Validate, Compile, Test, Package, Install, Deploy
+		
+14)	List out the build, source and test source directory for POM in Maven?
+		Build = Target
+		Source = src/main/java
+		Test = src/main/test
+		
+15)	Where do you find the class files when you compile a Maven project?
+		You will find the class files ${basedir}/target/classes/.
+
+16)	 Explain what would the “jar: jar” goal do?
+		jar: jar will not recompile sources; it will imply just create a JAR from the target/classes directory considering that everything else has been done
+		
+17)	List out what are the Maven’s order of inheritance?
+		Parent Pom
+		Project Pom
+		Settings
+		CLI parameters
+		
+18)	For POM what are the minimum required elements?
+		The minimum required elements for POM are project root, modelVersion, groupID, artifactID and version
+	
+19)	Explain how you can produce execution debug output or error messages?
+		To produce execution debug output you could call Maven with X parameter or e parameter
+		
+20)	Explain how to run test classes in Maven?
+		To run test classes in Maven, you need surefire plugin, check and configure your settings in setting.xml and pom.xml for a property named “test.”
+		
